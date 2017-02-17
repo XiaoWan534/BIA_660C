@@ -133,7 +133,7 @@ class DataFrame(object):
 
             if isinstance(key_col, str):
                 group = [[key_col, f_col]]
-                for index, row_value in enumerate(self[key_col]):
+                for index, row_value in enumerate(self[key_col]):   # got index and run defaultdict()
                     d[row_value].append(self[f_col][index])
                 for key in d.keys():
                     group.append([key, str(f(d[key]))])
@@ -142,8 +142,19 @@ class DataFrame(object):
             # ============ Task 3 extra ============
             elif isinstance(key_col, list):
                 if all([isinstance(col_name, str) for col_name in key_col]):
-                    for key_row in set(self[col_group[0]].data):
-                        return None
+                    group = [key_col + [f_col]]
+                    rows_chosen_col = []
+                    for row in self[key_col]:
+                        rows_chosen_col.append(tuple(row.itervalues()))
+                    pattern = set(rows_chosen_col)
+
+                    for line in pattern:      # got index and run defaultdict()
+                        for index, row in enumerate(self[key_col]):
+                            if tuple(row.itervalues) == line:
+                                d[line].append(self[f_col][index])
+                    for key in d.keys():
+                        group.append([key, str(f(d[key]))])
+                    return DataFrame(group, header=True)
         else:
             raise TypeError('Something wrong with the second argument.')
 
