@@ -210,7 +210,5 @@ df = DataFrame.from_csv('SalesJan2009.csv')
 
 
 # test Task 3
-group1 = df.group_by('Payment_Type', 'Price', avg)
-group2 = df.group_by(['City', 'Payment_Type'], 'Price', avg)
-
-2+2
+#group1 = df.group_by('Payment_Type', 'Price', avg)
+#group2 = df.group_by(['City', 'Payment_Type'], 'Price', avg)
