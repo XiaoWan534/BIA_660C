@@ -41,6 +41,9 @@ class DataFrame(object):
                     try:
                         row[i] = datetime.datetime.strptime(row[i], '%m/%d/%y %H:%M')
                     except:
+                        try:
+                            row[i] = row[i].strip()
+                        except:
                             pass
             return row
 
@@ -129,13 +132,14 @@ class DataFrame(object):
         if isinstance(f_col, str):
 
             if isinstance(key_col, str):
-                group = [key_col, f_col]
+                group = [[key_col, f_col]]
                 for index, row_value in enumerate(self[key_col]):
-                    d[row_value].append(row_f for index_f, row_f in enumerate(self[f_col]) if index_f == index)
+                    d[row_value].append(self[f_col][index])
                 for key in d.keys():
-                    group.append(key,f(d[key]))
+                    group.append([key, str(f(d[key]))])
                 return DataFrame(group, header=True)
 
+            # ============ Task 3 extra ============
             elif isinstance(key_col, list):
                 if all([isinstance(col_name, str) for col_name in key_col]):
                     for key_row in set(self[col_group[0]].data):
@@ -196,6 +200,6 @@ df = DataFrame.from_csv('SalesJan2009.csv')
 
 # test Task 3
 group1 = df.group_by('Payment_Type', 'Price', avg)
-#group2 = df.group_by(['City', 'Payment_Type'], 'Price', avg)
+group2 = df.group_by(['City', 'Payment_Type'], 'Price', avg)
 
 2+2
