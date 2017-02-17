@@ -34,16 +34,13 @@ class DataFrame(object):
         # ============ Task 2 (type modification for comparision) ============
         def type_modify(row):
             for i in range(len(row)):
-                # transform data to proper format as time, string, number
+                # transform data to proper format as number or time
                 try:
-                    row[i] = datetime.datetime.strptime(row[i], '%m/%d/%y %H:%M')
+                    row[i] = float(row[i].replace(',', ''))
                 except:
                     try:
-                        row[i] = row[i].strip()
+                        row[i] = datetime.datetime.strptime(row[i], '%m/%d/%y %H:%M')
                     except:
-                        try:
-                            row[i] = float(row[i].replace(',', ''))
-                        except:
                             pass
             return row
 
@@ -189,14 +186,12 @@ def avg(list_of_values):
 df = DataFrame.from_csv('SalesJan2009.csv')
 
 # test Task 1
-sort1 = df.sort_by('Product', True)
-sort2 = df.sort_by(['Product','Payment_Type'], [True, False])
-
-print(sort1['Product'])
+#sort1 = df.sort_by('Product', True)
+#sort2 = df.sort_by(['Product','Payment_Type'], [True, False])
 
 # test Task 2
-b_ix = df['Price'] > 1400
-bool_ix = df[df['Price'] > 1400]
+#b_ix = df['Price'] > 1400
+#bool_ix = df[df['Price'] > 1400]
 
 
 # test Task 3
