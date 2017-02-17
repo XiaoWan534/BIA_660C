@@ -98,7 +98,7 @@ df = DataFrame.from_csv('SalesJan2009.csv')
 
 
 # Test for Task 2
-test2 = df[3]
-print(test2['City'])
+#test2 = df[3]
+#print(test2['City'])
 
 2+2
