@@ -124,19 +124,19 @@ def inbound():
                                  str(lat) +'&lon='+ str(lng) +'&APPID='+ key_openWeatherMap
             weather_info = json.loads(requests.get(url_weather).text)
 
-            now = weather_info['weather']#['main']
-            temp = weather_info['main']#['temp']
-            hum = weather_info['main']#['humidity']
-            wind = weather_info['currently']#['windBearing']
+            now = weather_info['weather'][0]['main']
+            temp = weather_info['main']['temp']
+            hum = weather_info['main']['humidity']
+            wind = weather_info['wind']['speed']
 
             # get forecast information
             url_forecast = 'http://api.openweathermap.org/data/2.5/forecast?lat='+ \
                                  str(lat) +'&lon='+ str(lng) +'&APPID='+ key_openWeatherMap
             forecast_info = json.loads(requests.get(url_forecast).text)
 
-            forecast_main = forecast_info['list']#['weather']
-            forecast_temp_min = forecast_info['list']#['main']['temp_min']
-            forecast_temp_max = forecast_info['list']#['main']['temp_max']
+            forecast_main = forecast_info['list'][1]['weather'][0]['main']
+            forecast_temp_min = forecast_info['list'][1]['main']['temp_min']
+            forecast_temp_max = forecast_info['list'][1]['main']['temp_max']
 
             response = {
                 'username': 'xiao_bot',
