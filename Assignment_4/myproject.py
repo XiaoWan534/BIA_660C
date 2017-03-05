@@ -14,7 +14,7 @@ my_bot_name = 'xiao_bot'
 my_slack_username = 'xiaowan'
 my_ip_address = '35.166.3.154'
 
-slack_inbound_url = 'https://hooks.slack.com/services/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'
+slack_inbound_url = 'https://hooks.slack.com/services/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'
 
 
 # this handles POST requests sent to your server at SERVERIP:41953/slack
@@ -24,7 +24,7 @@ def inbound():
     print 'FORM DATA RECEIVED IS:'
     print request.form
 
-    time.sleep(random.uniform(0, 20))
+    #time.sleep(random.uniform(0, 20))
     response = {'username': my_bot_name, 'icon_emoji': ':bear:', 'text': ''}
     channel = request.form.get('channel_name')
     username = request.form.get('user_name')
@@ -124,24 +124,24 @@ def inbound():
                                  str(lat) +'&lon='+ str(lng) +'&APPID='+ key_openWeatherMap
             weather_info = json.loads(requests.get(url_weather).text)
 
-            now = weather_info['weather']['main']
-            temp = weather_info['main']['temp']
-            hum = weather_info['main']['humidity']
-            wind = weather_info['currently']['windBearing']
+            now = weather_info['weather']#['main']
+            temp = weather_info['main']#['temp']
+            hum = weather_info['main']#['humidity']
+            wind = weather_info['currently']#['windBearing']
 
             # get forecast information
             url_forecast = 'http://api.openweathermap.org/data/2.5/forecast?lat='+ \
                                  str(lat) +'&lon='+ str(lng) +'&APPID='+ key_openWeatherMap
             forecast_info = json.loads(requests.get(url_forecast).text)
 
-            forecast_main = forecast_info['list']['weather']
-            forecast_temp_min = forecast_info['list']['main']['temp_min']
-            forecast_temp_max = forecast_info['list']['main']['temp_max']
+            forecast_main = forecast_info['list']#['weather']
+            forecast_temp_min = forecast_info['list']#['main']['temp_min']
+            forecast_temp_max = forecast_info['list']#['main']['temp_max']
 
             response = {
                 'username': 'xiao_bot',
                 'icon_emoji': ':bear:',
-                'text': str(lat) + str(lng),
+                'text': 'Here is the weather at '+ str(location),
                 "attachments": [
                     {
                         "color": ['good'],
