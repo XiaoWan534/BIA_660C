@@ -87,6 +87,8 @@ city_name = 'Cancun'
 data_60 = scrape_data(start_date, from_place, to_place, city_name)
 print data_60
 
+
+
 # ======== Task 2 =========
 def scrape_data_90(start_date, from_place, to_place, city_name):
     """
