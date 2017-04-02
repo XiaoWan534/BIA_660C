@@ -3,13 +3,17 @@
 
 import time
 import re
-from unidecode import unidecode
 import pandas as pd
 import datetime
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+from unidecode import unidecode
 from dateutil.parser import parse
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
+
 
 
 # ======== Task 1 =========
@@ -78,7 +82,7 @@ def scrape_data(start_date, from_place, to_place, city_name):
     driver.quit()
     return df 
 
-# Test
+# Test for task 1
 from_place = 'Beijing'
 to_place = 'Mexico'
 start_date = datetime.datetime(2017, 04, 10)
@@ -185,7 +189,7 @@ def scrape_data_90(start_date, from_place, to_place, city_name):
     driver.quit()
     return df 
 
-# Test
+# Test for task 2
 from_place = 'Beijing'
 to_place = 'America'
 start_date = datetime.datetime(2017, 04, 10)
@@ -193,5 +197,26 @@ city_name = 'Boston'
 
 data_90 = scrape_data_90(start_date, from_place, to_place, city_name)
 print data_90
+
+
+# ======== Task 3 question 2 =========
+def task_3_IQR(flight_data):
+    plt.boxplot(flight_data['Price'])
+    plt.title('Boxplot of Prices')
+    plt.savefig('task_3_iqr.png')
+    
+    q1 = np.percentile(flight_data['Price'], 25)
+    q3 = np.percentile(flight_data['Price'], 75)
+    IQR = q3 - q1
+    low_bound = q1-1.5*IQR
+    outliers = flight_data[flight_data['Price'] < low_bound]
+    if outliers.shape[0] != 0:
+        return outliers
+    else:
+        raise Exception('There is no outlier price!')
+
+# Test for task 3 question 2
+outliers_IQR = task_3_IQR(data_60)
+print outliers_IQR
 
 2+2
