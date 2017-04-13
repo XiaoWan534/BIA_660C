@@ -89,6 +89,7 @@ def scrape_data(start_date, from_place, to_place, city_name):
 # data_60 = scrape_data(datetime.datetime(2017, 4, 15), 'Beijing', 'Mexico', 'Mexico City')
 # data_60 = scrape_data(datetime.datetime(2017, 4, 15), 'Beijing', 'Mexico', 'Cancun')
 # data_60 = scrape_data(datetime.datetime(2017, 4, 15), 'Beijing', 'United States', 'San Francisco')
+# print 'Task 1'
 # print data_60
 
 
@@ -192,6 +193,7 @@ def scrape_data_90(start_date, from_place, to_place, city_name):
 # Test for task 2
 # data_90 = scrape_data_90(datetime.datetime(2017, 4, 15), 'Beijing', 'America', 'Boston')
 # data_90 = scrape_data_90(datetime.datetime(2017, 4, 15), 'Beijing', 'United States', 'San Francisco')
+# print 'Task 2'
 # print data_90
 
 
@@ -276,12 +278,12 @@ def task_3_dbscan(flight_data):
     
 
 # Test for task 3 question 1
-data_60 = scrape_data(datetime.datetime(2017, 4, 15), 'Beijing', 'Mexico', 'Mexico City')
-print data_60
+# data_60 = scrape_data(datetime.datetime(2017, 4, 15), 'Beijing', 'Mexico', 'Mexico City')
 # data_60 = scrape_data(datetime.datetime(2017, 4, 15), 'Beijing', 'Mexico', 'Cancun')
 # data_60 = scrape_data(datetime.datetime(2017, 4, 15), 'Beijing', 'United States', 'San Francisco')
-outliers_dbscan = task_3_dbscan(data_60)
-print outliers_dbscan
+# outliers_dbscan = task_3_dbscan(data_60)
+# print 'Task 3 part 1'
+# print outliers_dbscan
 
 
 # ======== Task 3 question 2 =========
@@ -305,8 +307,9 @@ def task_3_IQR(flight_data):
         raise Exception('There is no outlier price!')
 
 # Test for task 3 question 2
-data_60 = scrape_data(datetime.datetime(2017, 4, 15), 'Beijing', 'Mexico', 'Mexico City')
+# data_60 = scrape_data(datetime.datetime(2017, 4, 15), 'Beijing', 'Mexico', 'Mexico City')
 # data_60 = scrape_data(datetime.datetime(2017, 4, 15), 'Beijing', 'Mexico', 'Cancun')
 # data_60 = scrape_data(datetime.datetime(2017, 4, 15), 'Beijing', 'United States', 'San Francisco')
-outliers_IQR = task_3_IQR(data_60)
-print outliers_IQR
+# outliers_IQR = task_3_IQR(data_60)
+# print 'Task 3 part 2'
+# print outliers_IQR
